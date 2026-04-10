@@ -32,9 +32,10 @@
 
     /* ===== Utility ===== */
     .section { padding: 52px 20px; }
-    .section--light { background: #FFF8EE; }
-    .section--cream { background: #FFFCF0; }
-    .section--orange { background: var(--primary-light); }
+    .section--light   { background: #FFF8EE; }
+    .section--cream   { background: #FFFCF0; }
+    .section--orange  { background: var(--primary-light); }
+    .section--deep    { background: #FFF0D0; }
 
     .section-title {
       font-size: 1.3rem;
@@ -63,11 +64,21 @@
 
     /* ===== Hero ===== */
     .hero {
-      background: linear-gradient(150deg, #FFB84D 0%, #F5A623 50%, #E07A10 100%);
+      background: linear-gradient(150deg, #FFD580 0%, #F5A623 45%, #E07A10 100%);
       color: #fff;
-      padding: 56px 20px 68px;
+      padding: 60px 20px 80px;
       text-align: center;
       position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🐥🌼🐥🌼🐥🌼🐥🌼🐥🌼';
+      position: absolute;
+      top: 10px; left: 0; right: 0;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      opacity: 0.25;
+      white-space: nowrap;
       overflow: hidden;
     }
     .hero::after {
@@ -76,7 +87,7 @@
       bottom: -2px; left: 50%;
       transform: translateX(-50%);
       width: 150%;
-      height: 56px;
+      height: 60px;
       background: #FFF8EE;
       border-radius: 50% 50% 0 0;
     }
@@ -88,36 +99,39 @@
       font-weight: 500;
     }
     .hero-icon {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
+      font-size: 4rem;
+      margin-bottom: 8px;
       display: block;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
     }
     .hero-title {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 4px;
-      letter-spacing: 0.02em;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      letter-spacing: 0.04em;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.2);
     }
     .hero-title-sub {
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       opacity: 0.9;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      letter-spacing: 0.05em;
     }
     .hero-catch {
       display: inline-block;
-      background: rgba(255,255,255,0.2);
-      border: 1.5px solid rgba(255,255,255,0.5);
-      border-radius: 12px;
-      padding: 14px 24px;
-      font-size: 0.95rem;
+      background: rgba(255,255,255,0.22);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      border-radius: 14px;
+      padding: 16px 26px;
+      font-size: 0.98rem;
       font-weight: 700;
       margin-bottom: 28px;
-      line-height: 1.8;
+      line-height: 1.9;
+      backdrop-filter: blur(4px);
     }
-    .hero-catch span { color: #FFF9C4; font-size: 1.05em; }
+    .hero-catch span { color: #FFF9C4; font-size: 1.08em; }
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
@@ -125,11 +139,11 @@
       gap: 8px;
     }
     .hero-tag {
-      background: rgba(255,255,255,0.25);
-      border: 1px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.28);
+      border: 1px solid rgba(255,255,255,0.55);
       border-radius: 999px;
-      font-size: 0.78rem;
-      padding: 4px 14px;
+      font-size: 0.8rem;
+      padding: 5px 16px;
       font-weight: 600;
     }
 
@@ -139,7 +153,7 @@
       width: 100%;
       max-width: 360px;
       margin: 0 auto 12px;
-      padding: 16px 20px;
+      padding: 17px 20px;
       border-radius: 999px;
       font-size: 1rem;
       font-weight: 700;
@@ -152,7 +166,7 @@
     .btn--line {
       background: #06C755;
       color: #fff;
-      box-shadow: 0 4px 16px rgba(6,199,85,0.35);
+      box-shadow: 0 4px 20px rgba(6,199,85,0.38);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -170,6 +184,55 @@
       border: 2px solid rgba(255,255,255,0.65);
     }
     .btn-arrow::after { content: ' →'; }
+
+    /* ===== Photo Grid ===== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .photo-grid__item {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .photo-grid__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* 写真が未登録の場合のプレースホルダー */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #FFE9B0 0%, #FFD07A 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: rgba(200,130,0,0.5);
+      gap: 4px;
+    }
+    .photo-placeholder span {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: rgba(200,130,0,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Manga ===== */
+    .manga-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+      border: 3px solid #FFE0A0;
+    }
+    .manga-wrap img { width: 100%; }
 
     /* ===== Detail Table ===== */
     .detail-table {
@@ -211,9 +274,9 @@
     .tag {
       background: var(--primary-light);
       color: var(--primary-dark);
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
       border: 1px solid var(--border);
     }
@@ -222,11 +285,12 @@
     .seasonal-box {
       background: #fff;
       border-radius: 14px;
-      padding: 18px 16px;
+      padding: 20px 18px;
       box-shadow: 0 2px 10px rgba(245,166,35,0.1);
       font-size: 0.88rem;
       color: #555;
       line-height: 1.9;
+      margin-top: 16px;
     }
     .seasonal-box strong { color: var(--primary-dark); }
 
@@ -242,7 +306,7 @@
       align-items: flex-start;
     }
     .merit-icon {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       flex-shrink: 0;
       line-height: 1;
       padding-top: 2px;
@@ -254,6 +318,56 @@
       font-weight: 700;
       color: var(--primary-dark);
       margin-bottom: 4px;
+    }
+
+    /* ===== Schedule ===== */
+    .schedule-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .schedule-month {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(245,166,35,0.1);
+    }
+    .schedule-month__header {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--sub) 100%);
+      color: #fff;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .schedule-month__dates {
+      padding: 12px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .schedule-date {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .schedule-note {
+      background: #fff8ee;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.85rem;
+      color: var(--sub);
+      font-weight: 600;
+      text-align: center;
+      margin-top: 4px;
     }
 
     /* ===== Steps ===== */
@@ -287,6 +401,7 @@
       justify-content: center;
       position: relative;
       z-index: 1;
+      box-shadow: 0 3px 10px rgba(245,166,35,0.4);
     }
     .step__body {
       flex: 1;
@@ -355,43 +470,73 @@
 
     /* ===== CTA Box ===== */
     .cta-box {
-      background: linear-gradient(135deg, #F5A623 0%, #E07A10 100%);
-      border-radius: 20px;
-      padding: 32px 20px;
+      background: linear-gradient(135deg, #FFB84D 0%, #E07A10 100%);
+      border-radius: 22px;
+      padding: 36px 22px;
       text-align: center;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(224,122,16,0.3);
     }
-    .cta-box__title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
-    .cta-box__sub { font-size: 0.86rem; opacity: 0.9; margin-bottom: 24px; }
+    .cta-box__title { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .cta-box__sub { font-size: 0.86rem; opacity: 0.9; margin-bottom: 28px; line-height: 1.8; }
+
+    /* ===== Badge ===== */
+    .badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 14px;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Highlight Box ===== */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--sub) 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 22px 18px;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      box-shadow: 0 4px 16px rgba(245,166,35,0.3);
+    }
+    .highlight-box .hl { font-size: 1.1em; color: #FFF9C4; }
 
     /* ===== Footer ===== */
     footer {
       background: #2A1A00;
       color: #aaa;
       text-align: center;
-      padding: 28px 20px;
+      padding: 32px 20px;
       font-size: 0.78rem;
     }
-    footer strong { color: #ddd; display: block; margin-bottom: 4px; font-size: 0.85rem; }
+    footer strong { color: #ddd; display: block; margin-bottom: 4px; font-size: 0.88rem; }
   </style>
 </head>
 <body>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <p class="hero-eyebrow">認定こども園 せんだん幼稚園 ／ 子育て支援</p>
+  <p class="hero-eyebrow">認定こども園 せんだん幼稚園 ／ 子育て支援事業</p>
   <span class="hero-icon">🐣</span>
   <h1 class="hero-title">ピヨピヨくらぶ</h1>
   <p class="hero-title-sub">1歳児親子教室</p>
   <div class="hero-catch">
-    <span>お友だちと遊んで、笑って、</span><br>
-    親子で育つ時間をつくろう。
+    <span>笑って、動いて、食べて、つながる。</span><br>
+    親子で育つ、特別な時間をここで。
   </div>
   <div class="hero-tags">
     <span class="hero-tag">👶 1歳〜対象</span>
     <span class="hero-tag">📅 月3回・金曜日</span>
     <span class="hero-tag">🍱 月1回給食あり</span>
     <span class="hero-tag">💴 月額1,000円</span>
+    <span class="hero-tag">📲 申込はLINEから</span>
   </div>
 </section>
 
@@ -401,18 +546,58 @@
   <h2 class="section-title">ピヨピヨくらぶとは？</h2>
   <p class="section-lead">1歳のお子さんと保護者のための親子教室です</p>
 
-  <div style="background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 2px 12px rgba(245,166,35,0.1);margin-bottom:20px;">
-    <p style="font-size:0.95rem;color:#444;line-height:1.9;">
-      「おうちの近くに遊び場がない」「親子でそろそろお友だちが欲しい」
+  <div style="background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 2px 14px rgba(245,166,35,0.12);margin-bottom:20px;">
+    <p style="font-size:0.95rem;color:#444;line-height:1.95;">
+      「おうちの近くに遊び場がない」「親子でそろそろお友だちが欲しい」<br>
       そんな声から生まれた、<strong>1歳のお子さんと保護者の方のための親子教室</strong>です。<br><br>
       幼稚園の安全な施設を開放し、保育教諭と一緒に体操・製作・英語など
       バラエティ豊かなプログラムをお届けします。
-      月に1回はみんなで給食もいただきます。
+      月に1回はみんなで給食もいただきます。<br><br>
+      <strong>親子の絆を深める時間</strong>を大切にしながら、お子さんの成長を一緒に喜び合える場所です。
     </p>
   </div>
 
-  <div style="background:var(--primary-light);border-radius:12px;padding:16px 18px;font-size:0.88rem;color:var(--primary-dark);text-align:center;font-weight:600;">
+  <div style="background:var(--primary-light);border-radius:12px;padding:16px 18px;font-size:0.88rem;color:var(--primary-dark);text-align:center;font-weight:600;border:1.5px solid var(--border);">
     🌟 入園を考えていなくてもOK。はじめての方も大歓迎！
+  </div>
+</section>
+
+
+<!-- ===== PHOTO GALLERY ===== -->
+<!--
+  ★ 写真スタッフへ：以下のプレースホルダーを実際の活動写真に差し替えてください
+  推奨: 3枚（横3列グリッド）
+  例） 体操の様子・製作の様子・給食の様子 など
+  ファイル名: photo1.jpg, photo2.jpg, photo3.jpg をこのフォルダに配置
+-->
+<section class="section section--cream" style="padding-top:8px;padding-bottom:32px;">
+  <div class="photo-grid">
+    <div class="photo-grid__item">
+      <!-- <img src="写真/photo1.jpg" alt="体操の様子"> -->
+      <div class="photo-placeholder">📸<span>写真準備中</span></div>
+    </div>
+    <div class="photo-grid__item">
+      <!-- <img src="写真/photo2.jpg" alt="製作の様子"> -->
+      <div class="photo-placeholder">📸<span>写真準備中</span></div>
+    </div>
+    <div class="photo-grid__item">
+      <!-- <img src="写真/photo3.jpg" alt="給食の様子"> -->
+      <div class="photo-placeholder">📸<span>写真準備中</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== MANGA ===== -->
+<section class="section section--light" style="padding-top:32px;padding-bottom:40px;">
+  <h2 class="section-title">漫画でわかる！ピヨピヨくらぶ</h2>
+  <p class="section-lead">こんな教室です</p>
+  <div class="manga-wrap">
+    <img
+      src="%E3%81%B4%E3%82%88%E3%81%B4%E3%82%88%E3%81%8F%E3%82%89%E3%81%B6%E6%BC%AB%E7%94%BB%20%28NXPowerLite%20Copy%29.png"
+      alt="ピヨピヨくらぶ漫画"
+      loading="lazy"
+    >
   </div>
 </section>
 
@@ -423,7 +608,7 @@
   <table class="detail-table">
     <tr>
       <th>対　象</th>
-      <td>1歳〜になられるお子さまと保護者の方</td>
+      <td>1歳〜になられるお子さまと<strong>保護者の方</strong></td>
     </tr>
     <tr>
       <th>活動日</th>
@@ -435,8 +620,10 @@
     </tr>
     <tr>
       <th>持ち物</th>
-      <td>上履き・水筒<br>
-        <span style="font-size:0.8rem;color:#888;">※ マスクは保護者の方のみ</span>
+      <td>
+        上履き（保護者・お子さん両方）<br>
+        水筒<br>
+        <span style="font-size:0.8rem;color:#888;">※ 給食日はエプロン・おしぼりをお持ちください</span>
       </td>
     </tr>
     <tr>
@@ -446,8 +633,14 @@
       </td>
     </tr>
     <tr>
+      <th>参加者</th>
+      <td>お子さん＋お父さん・お母さん<br>
+        <span style="font-size:0.8rem;color:#888;">※ 親子の絆を大切にするため、保護者の方のご参加をお願いしています</span>
+      </td>
+    </tr>
+    <tr>
       <th>申　込</th>
-      <td>せんだん幼稚園 LINE公式アカウントよりご登録ください</td>
+      <td>せんだん幼稚園 <strong>LINE公式アカウント</strong>よりお申し込みください</td>
     </tr>
   </table>
 </section>
@@ -473,7 +666,8 @@
     <strong>🎨 季節の製作いろいろ</strong><br>
     こいのぼり・七夕・お月見・クリスマス・鬼のお面・手型の花束…<br>
     季節ごとの製作をお子さんと一緒に楽しめます。<br><br>
-    <span style="color:var(--sub);font-weight:600;">🍚 月に1回は給食も一緒に食べます！</span>
+    <span style="color:var(--sub);font-weight:600;">🍚 月に1回は給食も一緒に食べます！</span><br>
+    <span style="font-size:0.82rem;color:#888;">入園前の給食体験にもなりますよ。</span>
   </div>
 </section>
 
@@ -483,6 +677,13 @@
   <h2 class="section-title">ピヨピヨくらぶの魅力</h2>
 
   <div class="merit-list">
+    <div class="merit-item">
+      <div class="merit-icon">💞</div>
+      <div class="merit-body">
+        <div class="merit-title">親子の絆が深まる時間</div>
+        一緒に体を動かし、笑い合う体験が親子の絆を育みます。お子さんの「できた！」をそばで感じられる、かけがえのない時間です。
+      </div>
+    </div>
     <div class="merit-item">
       <div class="merit-icon">👫</div>
       <div class="merit-body">
@@ -514,7 +715,7 @@
     <div class="merit-item">
       <div class="merit-icon">💬</div>
       <div class="merit-body">
-        <div class="merit-title">ママ・パパ同士のつながり</div>
+        <div class="merit-title">パパ・ママ同士のつながり</div>
         同じ年代の保護者同士で話せる時間も。「一人じゃない」と感じられる場所です。
       </div>
     </div>
@@ -522,8 +723,110 @@
 </section>
 
 
-<!-- ===== HOW TO JOIN ===== -->
+<!-- ===== SCHEDULE ===== -->
 <section class="section section--cream">
+  <h2 class="section-title">令和8年度 活動スケジュール</h2>
+  <p class="section-lead">年度途中からの入会も随時受け付けています</p>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 4月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">4/24（金）</span>
+        <span class="schedule-date">5/8（金）</span>
+        <span class="schedule-date">5/15（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 5月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">5/22（金）</span>
+        <span class="schedule-date">5/29（金）</span>
+        <span class="schedule-date">6/12（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 6月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">6/19（金）</span>
+        <span class="schedule-date">6/26（金）</span>
+        <span class="schedule-date">7/3（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 7月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">7/10（金）</span>
+        <span class="schedule-date">9/4（金）</span>
+        <span class="schedule-date">9/11（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 9月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">9/18（金）</span>
+        <span class="schedule-date">9/25（金）</span>
+        <span class="schedule-date">10/1（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 10月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">10/9（金）</span>
+        <span class="schedule-date">10/16（金）</span>
+        <span class="schedule-date">10/23（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 11月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">11/20（金）</span>
+        <span class="schedule-date">11/26（金）</span>
+        <span class="schedule-date">12/4（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 1月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">1/15（金）</span>
+        <span class="schedule-date">1/22（金）</span>
+        <span class="schedule-date">1/29（金）</span>
+      </div>
+    </div>
+
+    <div class="schedule-month">
+      <div class="schedule-month__header">📅 2月度</div>
+      <div class="schedule-month__dates">
+        <span class="schedule-date">2/5（金）</span>
+        <span class="schedule-date">2/12（金）</span>
+        <span class="schedule-date">2/19（金）</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="schedule-note">
+    📌 途中入会は各月度の最初の回からご参加いただけます<br>
+    お気軽にLINEよりご相談ください
+  </div>
+
+  <div class="highlight-box" style="margin-top:20px;">
+    すべてのお申し込みは<br>
+    <span class="hl">📲 LINE公式アカウント</span> から受け付けています
+  </div>
+</section>
+
+
+<!-- ===== HOW TO JOIN ===== -->
+<section class="section section--light">
   <h2 class="section-title">参加の流れ</h2>
 
   <div class="steps">
@@ -533,26 +836,27 @@
         <div class="step__title">LINEで友だち追加する</div>
         <div class="step__desc">
           せんだん幼稚園のLINE公式アカウントを友だち追加してください。
-          日程や空き情報をお送りします。
+          日程・空き情報のご案内もLINEでお届けします。
         </div>
       </div>
     </div>
     <div class="step">
       <div class="step__left"><div class="step__num">2</div></div>
       <div class="step__body">
-        <div class="step__title">入会の意思をLINEでお知らせください</div>
+        <div class="step__title">LINEで入会のご連絡を</div>
         <div class="step__desc">
-          参加希望をLINEでご連絡ください。定員になり次第締め切りとなる場合があります。
+          参加希望月・お子さんの年齢をLINEでお知らせください。
+          定員になり次第締め切りとなる場合がありますので、お早めにどうぞ。
         </div>
       </div>
     </div>
     <div class="step">
       <div class="step__left"><div class="step__num">3</div></div>
       <div class="step__body">
-        <div class="step__title">毎月金曜日に園へ来てね！</div>
+        <div class="step__title">当日は親子でお越しください！</div>
         <div class="step__desc">
-          動きやすい服装でお越しください。上履きをお忘れなく。
-          はじめての方もスタッフが丁寧にご案内します。
+          動きやすい服装で、上履きをお忘れなく（保護者・お子さん両方）。<br>
+          はじめての方はスタッフが丁寧にご案内します。
         </div>
       </div>
     </div>
@@ -561,7 +865,7 @@
 
 
 <!-- ===== FAQ ===== -->
-<section class="section section--light">
+<section class="section section--cream">
   <h2 class="section-title">よくある質問</h2>
 
   <div class="faq-list">
@@ -574,7 +878,19 @@
     <details>
       <summary>途中から入会できますか？</summary>
       <div class="faq-answer">
-        はい、年度途中からでも入会いただけます。まずはLINEでご相談ください。
+        はい、スケジュールに記載の各月度の最初の回から随時入会いただけます。まずはLINEよりご相談ください。
+      </div>
+    </details>
+    <details>
+      <summary>持ち物の上履きは子どもも必要ですか？</summary>
+      <div class="faq-answer">
+        はい、お子さんの上履きもご持参ください。保護者の方・お子さん両方の上履きをご用意ください。
+      </div>
+    </details>
+    <details>
+      <summary>祖父母も参加できますか？</summary>
+      <div class="faq-answer">
+        ピヨピヨくらぶは、親子の絆を深めることを大切にしていますので、基本的にはお父さん・お母さんのご参加をお願いしています。ご事情がある場合はLINEよりご相談ください。
       </div>
     </details>
     <details>
@@ -584,16 +900,9 @@
       </div>
     </details>
     <details>
-      <summary>父親・祖父母も参加できますか？</summary>
+      <summary>申し込みはどこからできますか？</summary>
       <div class="faq-answer">
-        はい、パパやおじいちゃん・おばあちゃんのご参加も大歓迎です。
-      </div>
-    </details>
-    <details>
-      <summary>持ち物に上履きとありますが、子どもの分も必要ですか？</summary>
-      <div class="faq-answer">
-        お子さんはまだ歩き始めの時期が多いため、子ども用上履きは任意です。
-        保護者の方は上履きをお持ちください。
+        すべてのお申し込みはせんだん幼稚園のLINE公式アカウントから受け付けています。電話でのご相談も承ります（0285-74-0252）。
       </div>
     </details>
   </div>
@@ -601,12 +910,14 @@
 
 
 <!-- ===== CTA ===== -->
-<section class="section section--cream">
+<section class="section section--light">
   <div class="cta-box">
+    <div class="badge">📲 申し込みはLINEから</div>
     <p class="cta-box__title">参加はLINEから簡単に申し込めます</p>
     <p class="cta-box__sub">
       日程・空き情報もLINEでお届けします。<br>
-      まずは友だち追加からどうぞ！
+      まずは友だち追加からどうぞ！<br>
+      <span style="font-size:0.8em;opacity:0.85;">途中入会もお気軽にご相談ください。</span>
     </p>
     <a href="https://wdk9gwzx.autosns.app/line"
        target="_blank" rel="noopener noreferrer"
