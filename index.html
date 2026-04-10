@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>ピヨピヨくらぶ（1歳児親子教室）| 認定こども園 せんだん幼稚園</title>
   <style>
     /* ===== Reset & Base ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
+    html { font-size: 16px; scroll-behavior: smooth; color-scheme: light; }
     body {
       font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
       background: #FFFCF0;
@@ -357,6 +358,14 @@
       font-size: 0.88rem;
       font-weight: 600;
       white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .schedule-date.is-past {
+      background: #eee;
+      color: #aaa;
+      border-color: #ddd;
+      text-decoration: line-through;
+      opacity: 0.6;
     }
     .schedule-note {
       background: #fff8ee;
@@ -946,5 +955,26 @@
   © 2026 学校法人芳全寺学園 All Rights Reserved.
 </footer>
 
+<script>
+  // 過去の日程をグレーアウト
+  // 4〜12月 → 2026年、1〜3月 → 2027年（令和8年度）
+  (function () {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    document.querySelectorAll('.schedule-date').forEach(function (el) {
+      // "4/24（金）" → month=4, day=24
+      var m = el.textContent.match(/(\d+)\/(\d+)/);
+      if (!m) return;
+      var month = parseInt(m[1], 10);
+      var day   = parseInt(m[2], 10);
+      var year  = month >= 4 ? 2026 : 2027;
+      var d = new Date(year, month - 1, day);
+      if (d < today) {
+        el.classList.add('is-past');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
